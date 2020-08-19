@@ -1,0 +1,54 @@
+<!--xxx-->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script>
+$(function(){
+    $.getJSON('https://randomuser.me/api', function(data) {
+        console.log(data['results']);
+		
+    });
+});
+jQuery.ajax({
+            url: "https://randomuser.me/api",
+            type: "GET",
+
+            contentType: 'application/json; charset=utf-8',
+            success: function(resultData) {
+                //here is your json.
+                  // process it
+				  console.log(resultData['results']);
+
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+            },
+
+            timeout: 22132130,
+        });
+$('document').ready(function () {
+ setInterval(function () {jQuery.ajax({
+            url: "http://randomuser.me/api",
+            type: "GET",
+
+            contentType: 'application/json; charset=utf-8',
+            success: function(resultData) {
+                //here is your json.
+                  // process it
+				  console.log(resultData['results']);
+				  if (resultData['results'][0]['gender'].length>4){
+				  document.getElementById("p1").innerHTML = "<img src='static/status/neutral.png'/>";
+				  }
+				  else{
+				  document.getElementById("p1").innerHTML = "<img src='static/status/smile.png'/>";
+				  }
+				  
+
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+            },
+
+            timeout: 22132130,
+        });}, 80);//request every x seconds
+
+ }); 
+
+</script>
+<p id = "p1">Khi máy chủ sập ?????? :v </p>
